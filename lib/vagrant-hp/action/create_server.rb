@@ -4,7 +4,6 @@
 #
 
 require 'vagrant/util/retryable'
-require "fog"
 require "log4r"
 
 

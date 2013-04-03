@@ -3,7 +3,7 @@
 # Copyright:: Copyright (c) 2013 Mohit Sethi.
 #
 
-require "fog"
+require "fog/hp"
 require "log4r"
 
 module VagrantPlugins
