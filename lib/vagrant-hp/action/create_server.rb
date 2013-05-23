@@ -35,14 +35,15 @@ module VagrantPlugins
 
           # Figure out the name for the server
           server_name = config.server_name || env[:machine].name if env[:machine].name != "default" || get_server_name() 
-	  security_groups = [config.security_groups] || ["default"]
 
           # Output the settings we're going to use to the user
           env[:ui].info(I18n.t("vagrant_hp.launching_server"))
           env[:ui].info(" -- Flavor: #{flavor.name}")
           env[:ui].info(" -- Image: #{image.name}")
           env[:ui].info(" -- Name: #{server_name}")
-          env[:ui].info(" -- Security Groups: #{security_groups}")
+	  if config.security_groups
+            env[:ui].info(" -- Security Groups: #{config.security_groups}")
+          end
 
           # Build the options for launching...
           options = {
@@ -50,7 +51,7 @@ module VagrantPlugins
             :image_id   => image.id,
             :name        => server_name,
             :key_name    => config.keypair_name,
-	    :security_groups => security_groups
+	    :security_groups => config.security_groups
           }
 
           # Create the server
