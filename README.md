@@ -58,6 +58,8 @@ Vagrant.configure("2") do |config|
     rs.ssh_private_key_path = "<private_key_location>"
     rs.ssh_username = "<ssh_username>"
     rs.availability_zone = "az1"
+    # Security Groups defaults to ["default"]
+    # rs.security_groups = ["group1", "group2"]
   end
 end
 ```
@@ -101,6 +103,7 @@ This provider exposes quite a few provider-specific configuration options:
 * `ssh_username` - The SSH username, which overrides `config.ssh.username`.
 * `server_name` - The name of the server provisioned on HP Cloud.
 * `tenant_id` - The tenant_id to launch the server.
+* `security_groups` - An array of strings defining the security groups in which this VM is included.
 
 These can be set like typical provider-specific configuration:
 
@@ -120,6 +123,8 @@ Vagrant.configure("2") do |config|
     rs.ssh_private_key_path = "<private_key_location>"
     rs.ssh_username = "<ssh_username>"
     rs.availability_zone = "az1"
+    # Security Groups defaults to ["default"]
+    # rs.security_groups = ["group1", "group2"]
   end
 
 end
