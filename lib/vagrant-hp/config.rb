@@ -29,6 +29,8 @@ module VagrantPlugins
 
       attr_accessor :ssh_username
 
+      attr_accessor :security_groups
+
       def initialize(region_specific=false)
         @access_key = UNSET_VALUE
         @secret_key= UNSET_VALUE

@@ -41,13 +41,17 @@ module VagrantPlugins
           env[:ui].info(" -- Flavor: #{flavor.name}")
           env[:ui].info(" -- Image: #{image.name}")
           env[:ui].info(" -- Name: #{server_name}")
+	  if config.security_groups
+            env[:ui].info(" -- Security Groups: #{config.security_groups}")
+          end
 
           # Build the options for launching...
           options = {
             :flavor_id  => flavor.id,
             :image_id   => image.id,
             :name        => server_name,
-            :key_name    => config.keypair_name
+            :key_name    => config.keypair_name,
+	    :security_groups => config.security_groups
           }
 
           # Create the server
