@@ -1,7 +1,6 @@
 # Vagrant HP Provider
 
-[![Dependency Status](https://gemnasium.com/mohitsethi/vagrant-hp.png)](https://gemnasium.com/mohitsethi/vagrant-hp)
-
+[![Dependency Status](https://gemnasium.com/mohitsethi/vagrant-hp.png)](https://gemnasium.com/mohitsethi/vagrant-hp)  [![Code Climate](https://codeclimate.com/github/mohitsethi/vagrant-hp.png)](https://codeclimate.com/github/mohitsethi/vagrant-hp)
 
 This is a [Vagrant](http://www.vagrantup.com) 1.1+ plugin that adds an [HP](http://www.hpcloud.com)
 provider to Vagrant, allowing Vagrant to control and provision machines on HP Cloud.
