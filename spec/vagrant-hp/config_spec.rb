@@ -1,4 +1,6 @@
 require "vagrant-hp/config"
+require 'coveralls'
+Coveralls.wear!
 
 describe VagrantPlugins::HP::Config do
   let(:instance) { described_class.new }
