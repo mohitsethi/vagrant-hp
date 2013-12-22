@@ -12,7 +12,7 @@ module VagrantPlugins
         end
 
         def call(env)
-          env[:ui].info(I18n.t("vagrant_hp.already_created"))
+          env[:ui].info(I18n.t('vagrant_hp.already_created'))
           @app.call(env)
         end
       end

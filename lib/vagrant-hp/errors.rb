@@ -3,13 +3,13 @@
 # Copyright:: Copyright (c) 2013 Mohit Sethi.
 #
 
-require "vagrant"
+require 'vagrant'
 
 module VagrantPlugins
   module HP
     module Errors
       class VagrantHPError < Vagrant::Errors::VagrantError
-        error_namespace("vagrant_hp.errors")
+        error_namespace('vagrant_hp.errors')
       end
 
       class FogError < VagrantHPError

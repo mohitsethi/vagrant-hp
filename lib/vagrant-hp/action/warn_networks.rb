@@ -13,7 +13,7 @@ module VagrantPlugins
 
         def call(env)
           if env[:machine].config.vm.networks.length > 0
-            env[:ui].warn(I18n.t("vagrant_hp.warn_networks"))
+            env[:ui].warn(I18n.t('vagrant_hp.warn_networks'))
           end
 
           @app.call(env)

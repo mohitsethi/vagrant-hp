@@ -3,7 +3,7 @@
 # Copyright:: Copyright (c) 2013 Mohit Sethi.
 #
 
-require "vagrant-hp/util/timer"
+require 'vagrant-hp/util/timer'
 
 module VagrantPlugins
   module HP
@@ -12,14 +12,14 @@ module VagrantPlugins
       # provisioner runs.
       class TimedProvision < Vagrant::Action::Builtin::Provision
         def run_provisioner(env, p)
-          env[:ui].info("Insde TimedProvision")
+          env[:ui].info('Inside TimedProvision')
           timer = Util::Timer.time do
             super
           end
 
           env[:metrics] ||= {}
-          env[:metrics]["provisioner_times"] ||= []
-          env[:metrics]["provisioner_times"] << [p.class.to_s, timer]
+          env[:metrics]['provisioner_times'] ||= []
+          env[:metrics]['provisioner_times'] << [p.class.to_s, timer]
         end
       end
     end

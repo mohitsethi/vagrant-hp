@@ -3,8 +3,8 @@
 # Copyright:: Copyright (c) 2013 Mohit Sethi.
 #
 
-require "fog/hp"
-require "log4r"
+require 'fog/hp'
+require 'log4r'
 
 module VagrantPlugins
   module HP
@@ -15,7 +15,7 @@ module VagrantPlugins
       class ConnectHP
         def initialize(app, env)
           @app    = app
-          @logger = Log4r::Logger.new("vagrant_hp::action::connect_hp")
+          @logger = Log4r::Logger.new('vagrant_hp::action::connect_hp')
         end
 
         def call(env)
@@ -26,14 +26,14 @@ module VagrantPlugins
           tenant_id = config.tenant_id
           availability_zone = availability_zone(config.availability_zone)
 
-          @logger.info("Connecting to HP...")
-          env[:hp_compute] = Fog::Compute.new({
-            :provider => :hp,
-            :hp_access_key => access_key,
-            :hp_secret_key => secret_key,
-            :hp_tenant_id => tenant_id,
-            :hp_avl_zone => availability_zone,
-          })
+          @logger.info('Connecting to HP...')
+          env[:hp_compute] = Fog::Compute.new(
+            provider: :hp,
+            hp_access_key: access_key,
+            hp_secret_key: secret_key,
+            hp_tenant_id: tenant_id,
+            hp_avl_zone: availability_zone,
+          )
 
           @app.call(env)
         end

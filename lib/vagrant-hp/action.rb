@@ -3,8 +3,8 @@
 # Copyright:: Copyright (c) 2013 Mohit Sethi.
 #
 
-require "pathname"
-require "vagrant/action/builder"
+require 'pathname'
+require 'vagrant/action/builder'
 
 module VagrantPlugins
   module HP
@@ -92,19 +92,19 @@ module VagrantPlugins
       end
 
       # The autoload farm
-      action_root = Pathname.new(File.expand_path("../action", __FILE__))
-      autoload :ConnectHP, action_root.join("connect_hp")
-      autoload :IsCreated, action_root.join("is_created")
-      autoload :MessageAlreadyCreated, action_root.join("message_already_created")
-      autoload :MessageNotCreated, action_root.join("message_not_created")
-      autoload :ReadSSHInfo, action_root.join("read_ssh_info")
-      autoload :ReadState, action_root.join("read_state")
-      autoload :RunInstance, action_root.join("run_instance")
-      autoload :SyncFolders, action_root.join("sync_folders")
-      autoload :TimedProvision, action_root.join("timed_provision")
-      autoload :WarnNetworks, action_root.join("warn_networks")
-      autoload :CreateServer, action_root.join("create_server")
-      autoload :DeleteServer, action_root.join("delete_server")
+      action_root = Pathname.new(File.expand_path('../action', __FILE__))
+      autoload :ConnectHP, action_root.join('connect_hp')
+      autoload :IsCreated, action_root.join('is_created')
+      autoload :MessageAlreadyCreated, action_root.join('message_already_created')
+      autoload :MessageNotCreated, action_root.join('message_not_created')
+      autoload :ReadSSHInfo, action_root.join('read_ssh_info')
+      autoload :ReadState, action_root.join('read_state')
+      autoload :RunInstance, action_root.join('run_instance')
+      autoload :SyncFolders, action_root.join('sync_folders')
+      autoload :TimedProvision, action_root.join('timed_provision')
+      autoload :WarnNetworks, action_root.join('warn_networks')
+      autoload :CreateServer, action_root.join('create_server')
+      autoload :DeleteServer, action_root.join('delete_server')
     end
   end
 end

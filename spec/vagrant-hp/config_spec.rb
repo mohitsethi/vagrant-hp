@@ -1,28 +1,28 @@
-require "vagrant-hp/config"
+require 'vagrant-hp/config'
 require 'coveralls'
 Coveralls.wear!
 
 describe VagrantPlugins::HP::Config do
   let(:instance) { described_class.new }
 
-  describe "defaults" do
+  describe 'defaults' do
     subject do
       instance.tap do |o|
         o.finalize!
       end
     end
 
-    its("access_key")                   { should be_nil }
-    its("tenant_id")                    { should be_nil }
-    its("availability_zone")            { should == "az1" }
-    its("image")                        { should be_nil }
-    its("keypair_name")                 { should be_nil }
-    its("secret_key")                   { should be_nil }
-    its("ssh_private_key_path")         { should be_nil }
-    its("ssh_username")                 { should be_nil }
-    its("flavor")                       { should == "standard.small" }
-    its("tenant_id")                    { should be_nil }
-    its("server_name")                  { should be_nil }
+    its('access_key')                   { should be_nil }
+    its('tenant_id')                    { should be_nil }
+    its('availability_zone')            { should == 'az1' }
+    its('image')                        { should be_nil }
+    its('keypair_name')                 { should be_nil }
+    its('secret_key')                   { should be_nil }
+    its('ssh_private_key_path')         { should be_nil }
+    its('ssh_username')                 { should be_nil }
+    its('flavor')                       { should == 'standard.small' }
+    its('tenant_id')                    { should be_nil }
+    its('server_name')                  { should be_nil }
   end
 
   describe "overriding defaults" do

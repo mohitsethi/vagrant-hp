@@ -3,12 +3,12 @@
 # Copyright:: Copyright (c) 2013 Mohit Sethi.
 #
 
-require "log4r"
-require "vagrant"
+require 'log4r'
+require 'vagrant'
 
 module VagrantPlugins
   module HP
-    class Provider < Vagrant.plugin("2", :provider)
+    class Provider < Vagrant.plugin('2', :provider)
       def initialize(machine)
         @machine = machine
       end
@@ -26,7 +26,7 @@ module VagrantPlugins
         # Run a custom action called "read_ssh_info" which does what it
         # says and puts the resulting SSH info into the `:machine_ssh_info`
         # key in the environment.
-        env = @machine.action("read_ssh_info")
+        env = @machine.action('read_ssh_info')
         env[:machine_ssh_info]
       end
 
@@ -34,7 +34,7 @@ module VagrantPlugins
         # Run a custom action we define called "read_state" which does
         # what it says. It puts the state in the `:machine_state_id`
         # key in the environment.
-        env = @machine.action("read_state")
+        env = @machine.action('read_state')
 
         state_id = env[:machine_state_id]
 
@@ -47,7 +47,7 @@ module VagrantPlugins
       end
 
       def to_s
-        id = @machine.id.nil? ? "new" : @machine.id
+        id = @machine.id.nil? ? 'new' : @machine.id
         "HP (#{id})"
       end
     end

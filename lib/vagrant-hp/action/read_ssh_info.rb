@@ -3,7 +3,7 @@
 # Copyright:: Copyright (c) 2013 Mohit Sethi.
 #
 
-require "log4r"
+require 'log4r'
 
 module VagrantPlugins
   module HP
@@ -13,12 +13,12 @@ module VagrantPlugins
       class ReadSSHInfo
         def initialize(app, env)
           @app    = app
-          @logger = Log4r::Logger.new("vagrant_hp::action::read_ssh_info")
+          @logger = Log4r::Logger.new('vagrant_hp::action::read_ssh_info')
         end
 
         def call(env)
-          env[:machine_ssh_info] = read_ssh_info(env[:hp_compute], env[:machine])
-
+          env[:machine_ssh_info] = read_ssh_info(env[:hp_compute],
+                                                 env[:machine])
           @app.call(env)
         end
 
@@ -29,7 +29,8 @@ module VagrantPlugins
           server = hp.servers.get(machine.id)
           if server.nil?
             # The machine can't be found
-            @logger.info("Machine couldn't be found, assuming it got destroyed.")
+            @logger.info('Machine couldn''t be found,
+                         assuming it got destroyed.')
             machine.id = nil
             return nil
           end
@@ -39,10 +40,10 @@ module VagrantPlugins
           # Read the DNS info
           return {
             # Usually there should only be one public IP
-            :host => server.public_ip_address,
-            :port => 22,
-            :username => config.ssh_username,
-            :private_key_path => config.ssh_private_key_path,
+            host:              server.public_ip_address,
+            port:              22,
+            username:          config.ssh_username,
+            private_key_path:  config.ssh_private_key_path,
           }
         end
       end

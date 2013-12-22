@@ -3,11 +3,11 @@
 # Copyright:: Copyright (c) 2013 Mohit Sethi.
 #
 
-require "vagrant"
+require 'vagrant'
 
 module VagrantPlugins
   module HP
-    class Config < Vagrant.plugin("2", :config)
+    class Config < Vagrant.plugin('2', :config)
 
       attr_accessor :access_key
 
@@ -31,7 +31,7 @@ module VagrantPlugins
 
       attr_accessor :security_groups
 
-      def initialize(region_specific=false)
+      def initialize(region_specific = false)
         @access_key = UNSET_VALUE
         @secret_key= UNSET_VALUE
         @server_name = UNSET_VALUE
@@ -58,7 +58,8 @@ module VagrantPlugins
         super.tap do |result|
           # Copy over the region specific flag. "True" is retained if either
           # has it.
-          new_region_specific = other.instance_variable_get(:@__region_specific)
+          new_region_specific = other.instance_variable_get(
+                                                          :@__region_specific)
           result.instance_variable_set(
             :@__region_specific, new_region_specific || @__region_specific)
 
@@ -91,7 +92,7 @@ module VagrantPlugins
         @image = nil if @image == UNSET_VALUE
 
         # Default instance type is an standard.small
-        @flavor = "standard.small" if @flavor == UNSET_VALUE
+        @flavor = 'standard.small' if @flavor == UNSET_VALUE
 
         # Keypair defaults to nil
         @keypair_name = nil if @keypair_name == UNSET_VALUE
@@ -101,7 +102,7 @@ module VagrantPlugins
 
         # Default availability-zone is az1. This is sensible because HP Cloud
         # generally defaults to this as well.
-        @availability_zone = "az1" if @availability_zone == UNSET_VALUE
+        @availability_zone = 'az1' if @availability_zone == UNSET_VALUE
 
         # The SSH values by default are nil, and the top-level config
         # `config.ssh` values are used.
@@ -116,39 +117,39 @@ module VagrantPlugins
         errors = []
         warnings = []
         messages = []
-            
-        # access_key: required    
-        errors << I18n.t("vagrant_hp.config.access_key_required") \
+
+        # access_key: required
+        errors << I18n.t('vagrant_hp.config.access_key_required') \
           if @access_key.nil?
 
         # secret_key: required
-        errors << I18n.t("vagrant_hp.config.secret_key_required") \
+        errors << I18n.t('vagrant_hp.config.secret_key_required') \
           if @secret_key.nil?
 
         # tenant_id: required
-        errors << I18n.t("vagrant_hp.config.tenant_id_required") \
+        errors << I18n.t('vagrant_hp.config.tenant_id_required') \
           if @tenant_id.nil?
 
         # keypair_name: required
-        errors << I18n.t("vagrant_hp.config.keypair_name_required") \
+        errors << I18n.t('vagrant_hp.config.keypair_name_required') \
           if @keypair_name.nil?
 
         # image: required
-        errors << I18n.t("vagrant_hp.config.image_required") \
+        errors << I18n.t('vagrant_hp.config.image_required') \
           if @image.nil?
 
         # ssh_private_key_path: required
-        errors << I18n.t("vagrant_hp.config.ssh_private_key_path") \
+        errors << I18n.t('vagrant_hp.config.ssh_private_key_path') \
           if @ssh_private_key_path.nil?
 
-        { "HP Provider" => errors }
+        { 'HP Provider' => errors }
       end
 
       # This gets the configuration for a specific region. It shouldn't
       # be called by the general public and is only used internally.
       def get_region_config(name)
         if !@__finalized
-          raise "Configuration must be finalized before calling this method."
+          raise 'Configuration must be finalized before calling this method.'
         end
 
         # Return the compiled region config
