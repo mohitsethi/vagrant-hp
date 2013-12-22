@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-expectations", "~> 2.14.4"
   s.add_development_dependency "rspec-mocks", "~> 2.14.4"
   s.add_development_dependency "rubygems-bundler"
+  s.add_development_dependency "rubocop"
 
   # The following block of code determines the files that should be included
   # in the gem. It does this by reading all the files in the directory where
