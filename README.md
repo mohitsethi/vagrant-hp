@@ -1,6 +1,6 @@
 # Vagrant HP Provider
 
-[![Dependency Status](https://gemnasium.com/mohitsethi/vagrant-hp.png)](https://gemnasium.com/mohitsethi/vagrant-hp)  [![Code Climate](https://codeclimate.com/github/mohitsethi/vagrant-hp.png)](https://codeclimate.com/github/mohitsethi/vagrant-hp) [![Build Status](https://travis-ci.org/mohitsethi/vagrant-hp.png?branch=master)](https://travis-ci.org/mohitsethi/vagrant-hp) [![Coverage Status](https://coveralls.io/repos/mohitsethi/vagrant-hp/badge.png)](https://coveralls.io/r/mohitsethi/vagrant-hp)
+[![Gem Version](https://badge.fury.io/rb/vagrant-hp.png)](http://badge.fury.io/rb/vagrant-hp) [![Dependency Status](https://gemnasium.com/mohitsethi/vagrant-hp.png)](https://gemnasium.com/mohitsethi/vagrant-hp)  [![Code Climate](https://codeclimate.com/github/mohitsethi/vagrant-hp.png)](https://codeclimate.com/github/mohitsethi/vagrant-hp) [![Build Status](https://travis-ci.org/mohitsethi/vagrant-hp.png?branch=master)](https://travis-ci.org/mohitsethi/vagrant-hp) [![Coverage Status](https://coveralls.io/repos/mohitsethi/vagrant-hp/badge.png)](https://coveralls.io/r/mohitsethi/vagrant-hp)
 
 
 This is a [Vagrant](http://www.vagrantup.com) 1.1+ plugin that adds an [HP](http://www.hpcloud.com)
@@ -93,9 +93,9 @@ provider-specific configuration for this provider.
 This provider exposes quite a few provider-specific configuration options:
 
 * `access_key` - The access key for accessing HP Cloud
-* `image` - The Image-id  or Image-Name to boot, such as 
+* `image` - The Image-id  or Image-Name to boot, such as
     "Ubuntu Precise 12.04 LTS Server 64-bit 20121026 (b)"
-* `availability_zone` - The availability zone to launch the server. 
+* `availability_zone` - The availability zone to launch the server.
     If nil, it will use 'az1'.
 * `flavor` - The type of flavor, such as "standard.xsmall"
 * `keypair_name` - The name of the keypair to use to bootstrap image
