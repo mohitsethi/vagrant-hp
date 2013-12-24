@@ -27,9 +27,11 @@ module VagrantPlugins
 
           # Find the machine
           server = hp.servers.get(machine.id)
-          if server.nil? || [:"shutting-down", :terminated].include?(server.state.to_sym)
+          if server.nil? ||
+              [:"shutting-down", :terminated].include?(server.state.to_sym)
             # The machine can't be found
-            @logger.info('Machine not found or terminated, assuming it got destroyed.')
+            @logger.info(
+                'Machine not found or terminated, assuming it got destroyed.')
             machine.id = nil
             return :not_created
           end

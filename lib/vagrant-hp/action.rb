@@ -26,7 +26,7 @@ module VagrantPlugins
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
           b.use Call, IsCreated do |env, b2|
-            if !env[:result]
+            unless env[:result]
               b2.use MessageNotCreated
               next
             end
@@ -63,7 +63,7 @@ module VagrantPlugins
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
           b.use Call, IsCreated do |env, b2|
-            if !env[:result]
+            unless env[:result]
               b2.use MessageNotCreated
               next
             end
@@ -95,7 +95,8 @@ module VagrantPlugins
       action_root = Pathname.new(File.expand_path('../action', __FILE__))
       autoload :ConnectHP, action_root.join('connect_hp')
       autoload :IsCreated, action_root.join('is_created')
-      autoload :MessageAlreadyCreated, action_root.join('message_already_created')
+      autoload :MessageAlreadyCreated, action_root.join(
+                                                    'message_already_created')
       autoload :MessageNotCreated, action_root.join('message_not_created')
       autoload :ReadSSHInfo, action_root.join('read_ssh_info')
       autoload :ReadState, action_root.join('read_state')

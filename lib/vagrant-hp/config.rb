@@ -8,7 +8,6 @@ require 'vagrant'
 module VagrantPlugins
   module HP
     class Config < Vagrant.plugin('2', :config)
-
       attr_accessor :access_key
 
       attr_accessor :secret_key
@@ -33,7 +32,7 @@ module VagrantPlugins
 
       def initialize(region_specific = false)
         @access_key = UNSET_VALUE
-        @secret_key= UNSET_VALUE
+        @secret_key = UNSET_VALUE
         @server_name = UNSET_VALUE
         @private_ip_address = UNSET_VALUE
         @keypair_name = UNSET_VALUE
@@ -148,7 +147,7 @@ module VagrantPlugins
       # This gets the configuration for a specific region. It shouldn't
       # be called by the general public and is only used internally.
       def get_region_config(name)
-        if !@__finalized
+        unless @__finalized
           raise 'Configuration must be finalized before calling this method.'
         end
 

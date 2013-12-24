@@ -25,12 +25,12 @@ module VagrantPlugins
           # Find the flavor
           env[:ui].info(I18n.t('vagrant_hp.finding_flavor'))
           flavor = find_match(env[:hp_compute].flavors.all, config.flavor)
-          raise Errors::NoMatchingFlavor if !flavor
+          raise Errors::NoMatchingFlavor unless flavor
 
           # Find the image
           env[:ui].info(I18n.t('vagrant_hp.finding_image'))
           image = find_match(env[:hp_compute].images, config.image)
-          raise Errors::NoMatchingImage if !image
+          raise Errors::NoMatchingImage unless image
 
           # Figure out the name for the server
           server_name = config.server_name || env[:machine].name if \
@@ -81,7 +81,7 @@ module VagrantPlugins
             end
           end
 
-          if !env[:interrupted]
+          unless env[:interrupted]
             # Clear the line one more time so the progress is removed
             env[:ui].clear_line
 

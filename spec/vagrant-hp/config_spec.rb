@@ -25,19 +25,19 @@ describe VagrantPlugins::HP::Config do
     its('server_name')                  { should be_nil }
   end
 
-  describe "overriding defaults" do
+  describe 'overriding defaults' do
     # I typically don't meta-program in tests, but this is a very
     # simple boilerplate test, so I cut corners here. It just sets
     # each of these attributes to "foo" in isolation, and reads the value
     # and asserts the proper result comes back out.
     [:access_key, :tenant_id, :availability_zone, :image,
-      :keypair_name,:secret_key,:ssh_private_key_path,:ssh_username,
-      :flavor,:tenant_id,:server_name].each do |attribute|
+     :keypair_name, :secret_key, :ssh_private_key_path, :ssh_username,
+     :flavor, :tenant_id, :server_name].each do |attribute|
 
       it "should not default #{attribute} if overridden" do
-        instance.send("#{attribute}=".to_sym, "foo")
+        instance.send("#{attribute}=".to_sym, 'foo')
         instance.finalize!
-        instance.send(attribute).should == "foo"
+        instance.send(attribute).should == 'foo'
       end
     end
   end

@@ -33,8 +33,8 @@ module VagrantPlugins
             hostpath = "#{hostpath}/" if hostpath !~ /\/$/
 
             env[:ui].info(I18n.t('vagrant_hp.rsync_folder',
-                                :hostpath => hostpath,
-                                :guestpath => guestpath))
+                                hostpath: hostpath,
+                                guestpath: guestpath))
 
             # Create the guest path
             env[:machine].communicate.sudo("mkdir -p '#{guestpath}'")
@@ -53,9 +53,9 @@ module VagrantPlugins
             r = Vagrant::Util::Subprocess.execute(*command)
             if r.exit_code != 0
               raise Errors::RsyncError,
-                :guestpath => guestpath,
-                :hostpath => hostpath,
-                :stderr => r.stderr
+                    guestpath: guestpath,
+                    hostpath: hostpath,
+                    stderr: r.stderr
             end
           end
         end
