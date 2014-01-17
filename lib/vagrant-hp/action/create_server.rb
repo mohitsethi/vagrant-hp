@@ -41,6 +41,7 @@ module VagrantPlugins
           env[:ui].info(" -- Flavor: #{flavor.name}")
           env[:ui].info(" -- Image: #{image.name}")
           env[:ui].info(" -- Name: #{server_name}")
+          env[:ui].info(" -- Key-name: #{config.keypair_name}")
           if config.security_groups
             env[:ui].info(" -- Security Groups: #{config.security_groups}")
           end

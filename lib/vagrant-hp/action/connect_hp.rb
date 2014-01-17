@@ -28,7 +28,8 @@ module VagrantPlugins
 
           @logger.info('Connecting to HP...')
           env[:hp_compute] = Fog::Compute.new(
-            provider: :hp,
+            provider: 'HP',
+            version: 'v2',
             hp_access_key: access_key,
             hp_secret_key: secret_key,
             hp_tenant_id: tenant_id,
@@ -40,12 +41,10 @@ module VagrantPlugins
 
         def availability_zone(availability_zone)
           case availability_zone
-          when 'az3'
-            return 'az-3.region-a.geo-1'
-          when 'az2'
-            return 'az-2.region-a.geo-1'
+          when 'us-east'
+            return 'region-b.geo-1'
           else
-            return 'az-1.region-a.geo-1'
+            return 'region-a.geo-1'
           end
         end
       end
