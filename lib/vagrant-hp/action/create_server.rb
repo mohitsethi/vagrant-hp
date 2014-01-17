@@ -72,7 +72,7 @@ module VagrantPlugins
 
             # Wait for the server to be ready
             begin
-              server.wait_for(15) { ready? }
+              server.wait_for(30) { ready? }
             rescue RuntimeError, Fog::Errors::TimeoutError => e
               # If we don't have an error about a state transition, then
               # we just move on.
