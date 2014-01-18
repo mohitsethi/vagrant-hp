@@ -70,10 +70,10 @@ module VagrantPlugins
             # Set the progress
             env[:ui].clear_line
             env[:ui].report_progress(server.progress, 100, false)
-            
+
             # Wait for the server to be ready
             begin
-              server.wait_for(15) { ready? }
+              server.wait_for(30) { ready? }
             rescue RuntimeError, Fog::Errors::TimeoutError => e
               # If we don't have an error about a state transition, then
               # we just move on.
