@@ -70,7 +70,7 @@ module VagrantPlugins
             # Set the progress
             env[:ui].clear_line
             env[:ui].report_progress(server.progress, 100, false)
-
+            
             # Wait for the server to be ready
             begin
               server.wait_for(15) { ready? }
@@ -81,7 +81,10 @@ module VagrantPlugins
               env[:ui].info("Error: #{e.message}")
             end
           end
-
+          env[:ui].clear_line
+          env[:ui].info(I18n.t('vagrant_hp.associate_floating_ip_to_server'))
+          ip = env[:hp_compute].addresses.create
+          ip.server = server
           unless env[:interrupted]
             # Clear the line one more time so the progress is removed
             env[:ui].clear_line

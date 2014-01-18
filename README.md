@@ -11,6 +11,7 @@ provider to Vagrant, allowing Vagrant to control and provision machines on HP Cl
 ## Features
 
 * Boot Servers on HP Cloud
+* Auto Floating-IP management
 * SSH into the instances.
 * Provision the instances with any built-in Vagrant provisioner.
 * Minimal synced folder support via `rsync`.
@@ -173,7 +174,3 @@ that uses it, and uses bundler to execute Vagrant:
 ```
 $ bundle exec vagrant up --provider=hp
 ```
-
-##TODO
-# Auto allocation & deletion of floating-point ips.
-
