@@ -11,6 +11,7 @@ provider to Vagrant, allowing Vagrant to control and provision machines on HP Cl
 ## Features
 
 * Boot Servers on HP Cloud
+* Auto Floating-IP management
 * SSH into the instances.
 * Provision the instances with any built-in Vagrant provisioner.
 * Minimal synced folder support via `rsync`.
@@ -95,8 +96,8 @@ This provider exposes quite a few provider-specific configuration options:
 * `access_key` - The access key for accessing HP Cloud
 * `image` - The Image-id  or Image-Name to boot, such as
     "Ubuntu Precise 12.04 LTS Server 64-bit 20121026 (b)"
-* `availability_zone` - The availability zone to launch the server.
-    If nil, it will use 'az1'.
+* `availability_zone` - The availability zone to launch the server ['us-east', 'us-west'].
+    If nil, it will use 'us-west'.
 * `flavor` - The type of flavor, such as "standard.xsmall"
 * `keypair_name` - The name of the keypair to use to bootstrap image
    which support it.

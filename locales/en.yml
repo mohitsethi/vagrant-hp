@@ -26,6 +26,8 @@ en:
       Waiting for instance to become "ready"...
     waiting_for_ssh: |-
       Waiting for SSH to become available...
+    associate_floating_ip_to_server: |-
+      Associating floating-ip to server...
     warn_networks: |-
       Warning! The HP provider doesn't support any of the Vagrant
       high-level network configurations (`config.vm.network`). They
@@ -36,6 +38,8 @@ en:
       Finding flavor for server...
     finding_image: |-
       Finding image for server...
+    deleting_floating_ip: |-
+      "Attempting to delete floating-ip..."
 
     default:
       ssh_username_default: |-

@@ -41,6 +41,7 @@ module VagrantPlugins
           env[:ui].info(" -- Flavor: #{flavor.name}")
           env[:ui].info(" -- Image: #{image.name}")
           env[:ui].info(" -- Name: #{server_name}")
+          env[:ui].info(" -- Key-name: #{config.keypair_name}")
           if config.security_groups
             env[:ui].info(" -- Security Groups: #{config.security_groups}")
           end
@@ -72,7 +73,7 @@ module VagrantPlugins
 
             # Wait for the server to be ready
             begin
-              server.wait_for(15) { ready? }
+              server.wait_for(30) { ready? }
             rescue RuntimeError, Fog::Errors::TimeoutError => e
               # If we don't have an error about a state transition, then
               # we just move on.
@@ -80,7 +81,10 @@ module VagrantPlugins
               env[:ui].info("Error: #{e.message}")
             end
           end
-
+          env[:ui].clear_line
+          env[:ui].info(I18n.t('vagrant_hp.associate_floating_ip_to_server'))
+          ip = env[:hp_compute].addresses.create
+          ip.server = server
           unless env[:interrupted]
             # Clear the line one more time so the progress is removed
             env[:ui].clear_line

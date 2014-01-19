@@ -18,6 +18,10 @@ module VagrantPlugins
           @logger = Log4r::Logger.new('vagrant_hp::action::sync_folders')
         end
 
+        def ssh_key_options(ssh_info)
+            Array(ssh_info[:private_key_path]).map { |path| "-i '#{path}' " }.join
+        end
+
         def call(env)
           @app.call(env)
 
@@ -44,11 +48,8 @@ module VagrantPlugins
             # Rsync over to the guest path using the SSH info
             command = [
               'rsync', '--verbose', '--archive', '-z',
-              '-e', "ssh -o UserKnownHostsFile=/dev/null -o " \
-              " StrictHostKeyChecking=no -p #{ssh_info[:port]} -i " \
-              " '#{ssh_info[:private_key_path]}'",
-              hostpath,
-              "#{ssh_info[:username]}@#{ssh_info[:host]}:#{guestpath}"]
+              '-e', "ssh -o StrictHostKeyChecking=no -p #{ssh_info[:port]} #{ssh_key_options(ssh_info)}",
+              hostpath, "#{ssh_info[:username]}@#{ssh_info[:host]}:#{guestpath}"]
 
             r = Vagrant::Util::Subprocess.execute(*command)
             if r.exit_code != 0
