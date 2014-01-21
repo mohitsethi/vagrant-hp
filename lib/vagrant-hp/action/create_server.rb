@@ -60,6 +60,8 @@ module VagrantPlugins
 
           # Store the ID right away so we can track it
           env[:machine].id = server.id
+          #TODO:
+          env[:machine].delete_floating_ip = true
 
           # Wait for the server to finish building
           env[:ui].info(I18n.t('vagrant_hp.waiting_for_build'))
@@ -82,9 +84,16 @@ module VagrantPlugins
             end
           end
           env[:ui].clear_line
-          env[:ui].info(I18n.t('vagrant_hp.associate_floating_ip_to_server'))
-          ip = env[:hp_compute].addresses.create
-          ip.server = server
+          if config.floating_ip
+            env[:ui].info(I18n.t('vagrant_hp.associate_floating_ip_to_server'))
+            env[:ui].info("Using floating IP #{config.floating_ip}")
+            fip = env[:hp_compute].addresses.find { |fip| fip.ip.eql? config.floating_ip }
+            fip.server = server
+          else
+            env[:ui].info(I18n.t('vagrant_hp.new_floating_ip_to_server'))
+            ip = env[:hp_compute].addresses.create
+            ip.server = server
+          end
           unless env[:interrupted]
             # Clear the line one more time so the progress is removed
             env[:ui].clear_line

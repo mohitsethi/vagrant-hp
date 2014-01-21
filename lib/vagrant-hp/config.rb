@@ -30,6 +30,8 @@ module VagrantPlugins
 
       attr_accessor :security_groups
 
+      attr_accessor :floating_ip
+
       def initialize(region_specific = false)
         @access_key = UNSET_VALUE
         @secret_key = UNSET_VALUE
