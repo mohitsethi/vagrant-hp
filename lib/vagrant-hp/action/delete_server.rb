@@ -17,9 +17,12 @@ module VagrantPlugins
 
         def call(env)
           if env[:machine].id
-            @logger.info(I18n.t('vagrant_hp.deleting_floating_ip'))
-            ip = env[:hp_compute].addresses.find { |ip| ip.instance_id==env[:machine].id }
-            ip.destroy
+            config = env[:machine].provider_config
+            if not config.floating_ip
+              @logger.info(I18n.t('vagrant_hp.deleting_floating_ip'))
+              ip = env[:hp_compute].addresses.find { |ip| ip.instance_id==env[:machine].id }
+              ip.destroy
+            end
             @logger.info(I18n.t('vagrant_hp.deleting_server'))
             server = env[:hp_compute].servers.get(env[:machine].id)
             server.destroy
