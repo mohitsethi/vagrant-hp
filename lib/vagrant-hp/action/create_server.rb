@@ -20,7 +20,7 @@ module VagrantPlugins
 
         def call(env)
           # Get the configs
-          config   = env[:machine].provider_config
+          config = env[:machine].provider_config
 
           # Find the flavor
           env[:ui].info(I18n.t('vagrant_hp.finding_flavor'))
@@ -31,6 +31,13 @@ module VagrantPlugins
           env[:ui].info(I18n.t('vagrant_hp.finding_image'))
           image = find_match(env[:hp_compute].images, config.image)
           raise Errors::NoMatchingImage unless image
+
+          # Find the floating-ip
+          if config.floating_ip
+              env[:ui].info(I18n.t('vagrant_hp.finding_floating_ip'))
+              fip = env[:hp_compute].addresses.find { |fip| fip.ip.eql? config.floating_ip }
+              raise Errors::NoMatchingFloatingIp unless fip
+          end
 
           # Figure out the name for the server
           server_name = config.server_name || env[:machine].name if \
@@ -74,6 +81,7 @@ module VagrantPlugins
             # Wait for the server to be ready
             begin
               server.wait_for(30) { ready? }
+
             rescue RuntimeError, Fog::Errors::TimeoutError => e
               # If we don't have an error about a state transition, then
               # we just move on.
@@ -82,9 +90,13 @@ module VagrantPlugins
             end
           end
           env[:ui].clear_line
-          env[:ui].info(I18n.t('vagrant_hp.associate_floating_ip_to_server'))
-          ip = env[:hp_compute].addresses.create
-          ip.server = server
+          if not config.floating_ip
+            env[:ui].clear_line
+            env[:ui].info(I18n.t('vagrant_hp.new_floating_ip_to_server'))
+            fip = env[:hp_compute].addresses.create
+          end
+          fip.server = server
+
           unless env[:interrupted]
             # Clear the line one more time so the progress is removed
             env[:ui].clear_line
@@ -119,9 +131,11 @@ module VagrantPlugins
           collection.each do |single|
             return single if single.id == name
             return single if single.name == name
-          end
-          nil
+            return single if name.is_a?(Regexp) && name =~ single.name
+           end
+           nil
         end
+
       end
     end
   end

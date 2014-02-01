@@ -19,6 +19,10 @@ module VagrantPlugins
       class RsyncError < VagrantHPError
         error_key(:rsync_error)
       end
+      
+      class NoMatchingFloatingIp < VagrantHPError
+          error_key(:floating_ip_error)
+      end
     end
   end
 end

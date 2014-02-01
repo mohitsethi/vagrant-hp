@@ -28,6 +28,8 @@ en:
       Waiting for SSH to become available...
     associate_floating_ip_to_server: |-
       Associating floating-ip to server...
+    new_floating_ip_to_server: |-
+      Requesting a new floating-ip...
     warn_networks: |-
       Warning! The HP provider doesn't support any of the Vagrant
       high-level network configurations (`config.vm.network`). They
@@ -38,6 +40,8 @@ en:
       Finding flavor for server...
     finding_image: |-
       Finding image for server...
+    finding_floating_ip: |-
+      Finding floating-ip...
     deleting_floating_ip: |-
       "Attempting to delete floating-ip..."
 
@@ -72,6 +76,9 @@ en:
         Host path: %{hostpath}
         Guest path: %{guestpath}
         Error: %{stderr}
+
+      floating_ip_error: |-
+        Floating-Ip not found.
 
     states:
       short_active: |-
