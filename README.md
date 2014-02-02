@@ -64,6 +64,7 @@ Vagrant.configure("2") do |config|
     rs.availability_zone = "az1"
     # Security Groups defaults to ["default"]
     # rs.security_groups = ["group1", "group2"]
+    rs.floating_ip ="33.33.33.10" # Optional
   end
 end
 ```
