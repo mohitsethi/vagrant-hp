@@ -1,6 +1,7 @@
 # 0.1.3 (Jan 17 2014)
 * Upgraded to fog 1.19.0
 * Upgraded to HP-Compute-v13.5
+* Floating-ip improvements
 
 # 0.1.2 (Oct 26 2013)
 * Upgraded to fog 1.15.0
