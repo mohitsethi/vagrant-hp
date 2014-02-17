@@ -65,6 +65,7 @@ Vagrant.configure("2") do |config|
     # Security Groups defaults to ["default"]
     # rs.security_groups = ["group1", "group2"]
     rs.floating_ip ="33.33.33.10" # Optional
+    rs.network = ["830744ee-38a8-4618-a1eb-7c06fcsdf78", "Test_Network"] # Optional
   end
 end
 ```
@@ -131,6 +132,7 @@ Vagrant.configure("2") do |config|
     # Security Groups defaults to ["default"]
     # rs.security_groups = ["group1", "group2"]
     rs.floating_ip ="33.33.33.10" # Optional
+    rs.network = ["830744ee-38a8-4618-a1eb-7c06fcsdf78", "Test_Network"] # Optional
   end
 
 end

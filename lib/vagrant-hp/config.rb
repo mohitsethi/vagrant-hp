@@ -32,6 +32,8 @@ module VagrantPlugins
 
       attr_accessor :floating_ip
 
+      attr_accessor :network
+
       def initialize(region_specific = false)
         @access_key = UNSET_VALUE
         @secret_key = UNSET_VALUE
@@ -44,6 +46,9 @@ module VagrantPlugins
         @ssh_private_key_path = UNSET_VALUE
         @ssh_username = UNSET_VALUE
         @flavor = UNSET_VALUE
+        @network = UNSET_VALUE
+        @config = UNSET_VALUE
+
 
         @__compiled_region_configs = {}
         @__finalized = false
@@ -109,6 +114,9 @@ module VagrantPlugins
         # `config.ssh` values are used.
         @ssh_private_key_path = nil if @ssh_private_key_path == UNSET_VALUE
         @ssh_username = nil if @ssh_username == UNSET_VALUE
+
+        # The network values.
+        @network = [] if @network == UNSET_VALUE
 
         # Mark that we finalized
         @__finalized = true

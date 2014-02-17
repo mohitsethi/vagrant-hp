@@ -28,13 +28,23 @@ module VagrantPlugins
 
           @logger.info('Connecting to HP...')
           env[:hp_compute] = Fog::Compute.new(
-            provider: 'HP',
-            version: 'v2',
-            hp_access_key: access_key,
-            hp_secret_key: secret_key,
-            hp_tenant_id: tenant_id,
-            hp_avl_zone: availability_zone,
+                                              provider: 'HP',
+                                              version: :v2,
+                                              hp_access_key: access_key,
+                                              hp_secret_key: secret_key,
+                                              hp_tenant_id: tenant_id,
+                                              hp_avl_zone: availability_zone,
           )
+
+          # If network is provided
+          if config.network
+            env[:hp_network] = Fog::HP::Network.new(
+                                                    hp_access_key: access_key,
+                                                    hp_secret_key: secret_key,
+                                                    hp_tenant_id: tenant_id,
+                                                    hp_avl_zone: availability_zone
+                                                    )
+          end
 
           @app.call(env)
         end

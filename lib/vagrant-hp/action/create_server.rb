@@ -62,6 +62,17 @@ module VagrantPlugins
             security_groups: config.security_groups
           }
 
+          # Find network if provided in Vagrantfile
+          if config.network
+              networks = Array.new
+              env[:ui].info(I18n.t('vagrant_hp.finding_network'))
+              config.network.each do |net|
+                network = find_match(env[:hp_network].networks, net)
+                networks.push(network.id) if network
+              end
+              options[:networks] = networks
+          end
+
           # Create the server
           server = env[:hp_compute].servers.create(options)
 
