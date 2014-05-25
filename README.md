@@ -178,3 +178,10 @@ that uses it, and uses bundler to execute Vagrant:
 ```
 $ bundle exec vagrant up --provider=hp
 ```
+
+
+License and Author
+
+Author:: Mohit Sethi mohit@sethis.in endorse
+
+Copyright:: 2014, Mohit Sethi
