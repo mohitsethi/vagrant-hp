@@ -182,6 +182,6 @@ $ bundle exec vagrant up --provider=hp
 
 License and Author
 
-Author:: Mohit Sethi mohit@sethis.in endorse
+Author:: Mohit Sethi mohit@sethis.in [![endorse](https://api.coderwall.com/mohitsethi/endorsecount.png)](https://coderwall.com/mohitsethi)
 
 Copyright:: 2014, Mohit Sethi
